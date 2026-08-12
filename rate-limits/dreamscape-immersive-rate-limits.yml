@@ -1,0 +1,14 @@
+generated: '2026-08-12'
+method: searched
+source: https://dreamscapeimmersive.com/
+limit_count: 0
+limits: []
+headers: []
+note: >-
+  No published rate limits. Dreamscape Immersive operates no public API and no developer
+  documentation, so there is no documented limit, window, burst, or exhaustion status code to record.
+  The backends the consumer website calls — api.techscapevr.com (production) and
+  api.hq.dev.techscapevr.com (development), both AWS API Gateway hosts — refuse anonymous requests
+  with HTTP 403 {"message":"Forbidden"} and emit no RateLimit-*, X-RateLimit-* or Retry-After
+  headers on that response, so no runtime rate-limit signal could be observed either. limit_count
+  is an honest zero, not an unchecked field.

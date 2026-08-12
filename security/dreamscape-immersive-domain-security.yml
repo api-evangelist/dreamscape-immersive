@@ -1,0 +1,45 @@
+generated: '2026-08-12'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml hosts plus the backend hosts named in the
+  dreamscapeimmersive.com JavaScript bundle
+note: >-
+  techscapevr.com is Dreamscape Immersive's engineering domain — the consumer site's React
+  bundle (static/js/main.a6db2b7f.chunk.js) resolves REACT_APP_API_DOMAIN to hosts under it.
+  Both API hosts are AWS API Gateway endpoints that answer 403 {"message":"Forbidden"} to
+  every anonymous request, so only transport-layer posture could be probed. The apex
+  techscapevr.com does not resolve over HTTPS at all (DNS failure) — only the api.* and
+  assets.* subdomains exist. No SPF TXT record is published at the techscapevr.com apex,
+  DMARC is present but at p=none (monitor only), and there is no CAA record or DNSSEC on
+  either domain.
+hosts:
+- host: dreamscapeimmersive.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  6 22:31:52 2026 GMT
+  hsts: false
+- host: api.techscapevr.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  1 23:59:59 2026 GMT
+  hsts: false
+  http_status: 403
+  note: production AWS API Gateway backend; anonymous requests refused
+- host: api.hq.dev.techscapevr.com
+  https: true
+  tls_version: TLSv1.3
+  hsts: false
+  http_status: 403
+  note: development AWS API Gateway backend named by REACT_APP_API_DOMAIN in the shipped bundle
+domains:
+- domain: dreamscapeimmersive.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: techscapevr.com
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: true
+  dmarc_policy: none

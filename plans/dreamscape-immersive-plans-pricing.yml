@@ -1,0 +1,13 @@
+generated: '2026-08-12'
+method: searched
+source: https://dreamscapeimmersive.com/
+plan_count: 0
+plans: []
+note: >-
+  Dreamscape Immersive publishes no API plans, developer tiers, or programmatic pricing of any kind.
+  It has no developer program: there is no developer portal, no API documentation, and nothing to
+  subscribe to. The company's only published pricing is consumer ticket pricing for individual VR
+  adventures, sold per session through its own booking and checkout flow (/checkout, /checkout/amc,
+  /checkout/payment) and through venue partners; that is admission pricing, not an API plan, so it is
+  deliberately NOT recorded here as a plan. Group, corporate, and venue-licensing arrangements are
+  handled through the contact-us form rather than a published rate card. plan_count is an honest zero.

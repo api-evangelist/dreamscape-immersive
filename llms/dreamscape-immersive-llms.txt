@@ -1,0 +1,35 @@
+# Dreamscape Immersive
+
+> Dreamscape Immersive is an entertainment and technology company founded in 2016 and headquartered in Culver City, California. It produces story-based, full-roam virtual reality experiences in which up to six guests share a physical stage and see fully rendered avatars of one another inside a virtual 3D environment. It operates location-based VR venues, licenses its platform to international operators, and is a partner in the Dreamscape Learn education joint venture. **Dreamscape Immersive publishes no public API, developer portal, SDK, or machine-readable specification.**
+
+## What exists
+
+- [Dreamscape Immersive](https://dreamscapeimmersive.com/): consumer website — VR adventure lineup, venue finder, ticket booking and checkout. Client-rendered React single-page application behind Cloudflare.
+- [Careers](https://dreamscape-immersive.breezy.hr): hosted job board.
+- Licensee venue sites, run on the same React codebase: [Dreamscape MENA / Dubai](https://dreamscapemena.com) and [Dreamscape Geneva](https://dreamscapegeneva.com) (the Geneva site has served a hosting-provider maintenance page since 2022).
+- [Dreamscape Learn](https://www.dreamscapelearn.com/): affiliated education joint venture (separate entity), which publishes a Unity-based [Dreamscape Developer Kit](https://www.dreamscapelearn.com/developerkit) available on request. Not an API and not distributed through any package registry. It is the only Dreamscape-family host that serves a real `/llms.txt`, and that document belongs to Dreamscape Learn, not to Dreamscape Immersive.
+- [GitHub organization DreamscapeImmersive](https://github.com/DreamscapeImmersive): registered 2016-07-06, **zero public repositories**. No pointer is wired for it, because an empty org is not a developer surface.
+
+## What does not exist (re-checked 2026-08-12)
+
+- No OpenAPI, Swagger, GraphQL, AsyncAPI, MCP, or gRPC contract on any Dreamscape host.
+- No developer portal, API reference, getting-started guide, or quickstart. `api.`, `developer.`, `developers.`, `docs.` and `status.dreamscapeimmersive.com` do not resolve in DNS at all, and neither does the `techscapevr.com` apex.
+- No SDK or client library on npm, PyPI, RubyGems, crates.io, NuGet, Maven Central, or pkg.go.dev.
+- No A2A agent card, no `/llms.txt`, no `/.well-known/` document of any kind on any Dreamscape Immersive host.
+- No status page, changelog, deprecation policy, security.txt, or vulnerability-disclosure program.
+- No API plans, pricing tiers, or published rate limits.
+
+## Notes for agents
+
+- Every URL on `dreamscapeimmersive.com` other than `/`, `/index.html` and `/manifest.json` returns **HTTP 404** to a non-JavaScript client, including `/privacy`, `/terms`, `/faq`, `/robots.txt` and `/sitemap.xml`. Those pages render only after the client-side router executes. An agent fetching them will be told, truthfully by status code, that they do not exist.
+- The backends the website calls are `https://api.techscapevr.com` (production) and `https://api.hq.dev.techscapevr.com` (development) — AWS API Gateway hosts named through `REACT_APP_API_DOMAIN` in `static/js/main.a6db2b7f.chunk.js`, on Dreamscape's `techscapevr.com` engineering domain. Both are private and key-gated: anonymous requests receive `403 {"message":"Forbidden"}` on every path, including `/openapi.json`, `/graphql` and every `/.well-known/` path. They are internal booking/CRM backends, not an offered developer API, and are not documented anywhere public.
+- **Do not trust a 200 from `dreamscapemena.com`.** The MENA licensee site answers HTTP 200 for every path, including `/.well-known/agent-card.json` and `/openapi.json`, but the body is always the same single-page-app HTML shell. It is an SPA catch-all, not a served document. Its `/robots.txt` is genuine and disallows all crawling.
+- Booking and payment run through Stripe, CyberSource and (on the MENA site) Checkout.com; identity through AWS Cognito. Those are third-party surfaces, not Dreamscape APIs.
+
+## API Evangelist profile
+
+- [apis.yml](https://raw.githubusercontent.com/api-evangelist/dreamscape-immersive/refs/heads/main/apis.yml)
+- [Domain security probe](https://raw.githubusercontent.com/api-evangelist/dreamscape-immersive/refs/heads/main/security/dreamscape-immersive-domain-security.yml)
+- [Well-known probe](https://raw.githubusercontent.com/api-evangelist/dreamscape-immersive/refs/heads/main/well-known/dreamscape-immersive-well-known.yml)
+- [Plans](https://raw.githubusercontent.com/api-evangelist/dreamscape-immersive/refs/heads/main/plans/dreamscape-immersive-plans-pricing.yml) — plan_count 0
+- [Rate limits](https://raw.githubusercontent.com/api-evangelist/dreamscape-immersive/refs/heads/main/rate-limits/dreamscape-immersive-rate-limits.yml) — limit_count 0

@@ -1,7 +1,14 @@
 aid: dreamscape-immersive
 name: Dreamscape Immersive
-description: 'Dreamscape Immersive is a company surfaced via the API Evangelist harvest backlog (source:
-  secondary-market) and added to the network as a stub for full-pipeline profiling.'
+description: 'Dreamscape Immersive is an entertainment and technology company founded in 2016 and headquartered
+  in Culver City, California, that produces story-based, full-roam virtual reality experiences in which
+  up to six people share a physical stage and see fully rendered avatars of one another inside a virtual
+  3D environment. It operates location-based VR venues in the United States, licenses its platform to
+  international operators, and is a partner in the Dreamscape Learn education joint venture. Its public
+  surface is a consumer ticketing and booking website; as of August 2026 the company publishes no developer
+  portal, API documentation, SDK, or machine-readable specification, and the single backend its website
+  calls is a private, key-gated AWS API Gateway host that returns 403 to anonymous requests.'
+image: https://s3.amazonaws.com/dreamscape-web/ds_metadata.jpg
 url: https://raw.githubusercontent.com/api-evangelist/dreamscape-immersive/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
@@ -12,6 +19,13 @@ created: '2026-08-12'
 modified: '2026-08-12'
 tags:
 - Company
+- Virtual Reality
+- Immersive Experiences
+- Location Based Entertainment
+- Entertainment
+- Media
+- Ticketing
+- Education Technology
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -19,5 +33,47 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/dreamscape-immersive-domain-security.yml
 - type: Website
+  url: https://dreamscapeimmersive.com/
+- type: Careers
+  url: https://dreamscape-immersive.breezy.hr
+- type: Profile
+  name: Forge Global secondary-market listing
   url: https://forgeglobal.com/dreamscape-immersive_stock/
+- type: LLMsTxt
+  url: llms/dreamscape-immersive-llms.txt
+- type: Plans
+  url: plans/dreamscape-immersive-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/dreamscape-immersive-rate-limits.yml
+x-enrichment:
+  date: '2026-08-12'
+  status: minimal
+  artifacts_added: 0
+  artifacts_updated: 4
+  pass: local-v1
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: Dreamscape Immersive is a location-based VR venue operator with no developer program at
+    all — the two backends its consumer booking site calls, api.techscapevr.com and
+    api.hq.dev.techscapevr.com (resolved from REACT_APP_API_DOMAIN in the shipped React bundle), are
+    private AWS API Gateway hosts that answer 403 {"message":"Forbidden"} to every anonymous path
+    including /openapi.json and /graphql; no developer subdomain exists at all (api., developer.,
+    developers., docs. and status..dreamscapeimmersive.com and the techscapevr.com apex all fail DNS),
+    and the website itself returns a genuine HTTP 404 for every path except /, /index.html and
+    /manifest.json, including /robots.txt, /llms.txt and every /.well-known/ path.
+  evidence:
+  - url: https://api.techscapevr.com/openapi.json
+    status: 403
+  - url: https://api.hq.dev.techscapevr.com/openapi.json
+    status: 403
+  - url: https://dreamscapeimmersive.com/llms.txt
+    status: 404
+  - url: https://dreamscapeimmersive.com/.well-known/agent-card.json
+    status: 404
+  - url: https://dreamscapeimmersive.com/robots.txt
+    status: 404
+  checked: '2026-08-12'

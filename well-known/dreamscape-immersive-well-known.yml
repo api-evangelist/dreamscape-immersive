@@ -1,0 +1,132 @@
+generated: '2026-08-12'
+method: probed
+source: live GET of the RFC 8615 /.well-known/ surface on every Dreamscape Immersive host,
+  including the backend and licensee hosts named in the consumer site's JavaScript bundle
+note: >-
+  Recorded ABSENCE. Every /.well-known/ path probed on every Dreamscape host returned a miss,
+  so NO WellKnown and NO SecurityTxt pointer is emitted in apis.yml. dreamscapeimmersive.com
+  is a client-rendered React single-page application behind Cloudflare that answers a genuine
+  HTTP 404 with a 3,675-byte HTML shell for every path other than "/", "/index.html" and
+  "/manifest.json" — including /robots.txt and /sitemap.xml. The two API hosts under
+  techscapevr.com (Dreamscape's engineering domain, resolved from REACT_APP_API_DOMAIN in
+  static/js/main.a6db2b7f.chunk.js) are AWS API Gateway endpoints that answer
+  403 {"message":"Forbidden"} to every anonymous request, so nothing there is publicly
+  readable either. No developer subdomain exists at all: api., developer., developers.,
+  docs. and status..dreamscapeimmersive.com and the techscapevr.com apex all fail DNS
+  resolution outright.
+soft_200_rejected:
+- host: https://dreamscapemena.com
+  reason: >-
+    The MENA licensee site returns HTTP 200 for EVERY /.well-known/ path, but the body is the
+    same React single-page-app HTML shell (<!doctype html> ... <meta name="version"
+    content="1.0.1">) rather than a document. This is an SPA catch-all, not a served
+    well-known surface, and is recorded as a MISS. Its /robots.txt is the one genuine
+    text/plain document on that host and it disallows all crawling.
+hosts:
+- host: https://dreamscapeimmersive.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://www.dreamscapeimmersive.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://api.techscapevr.com
+  note: production AWS API Gateway backend; anonymous requests are refused
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403
+- host: https://api.hq.dev.techscapevr.com
+  note: development AWS API Gateway backend; anonymous requests are refused
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403
+- host: https://assets.hq.dev.techscapevr.com
+  note: asset backend; anonymous requests are refused
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403
+- host: https://dreamscapemena.com
+  note: MENA licensee site; every path answers 200 with an SPA HTML shell — treated as a miss
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    document: false
+  - path: /.well-known/agent-card.json
+    status: 200
+    document: false
+  - path: /.well-known/agent.json
+    status: 200
+    document: false
+- host: https://api.dreamscapemena.com
+  note: MENA licensee backend; answers 404 HTML to every anonymous path
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://dreamscapegeneva.com
+  note: Geneva licensee site; has served a hosting-provider maintenance page (503) since 2022
+  documents:
+  - path: /.well-known/security.txt
+    status: 503
+  - path: /.well-known/agent-card.json
+    status: 503
+  - path: /.well-known/agent.json
+    status: 503
+summary:
+  hits: 0
+  security_txt: false
+  openid_configuration: false
+  oauth_authorization_server: false
+  api_catalog: false
+  agent_card: false
+  pointer_emitted: false
