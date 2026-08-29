@@ -8,6 +8,17 @@ description: 'Dreamscape Immersive is an entertainment and technology company fo
   surface is a consumer ticketing and booking website; as of August 2026 the company publishes no developer
   portal, API documentation, SDK, or machine-readable specification, and the single backend its website
   calls is a private, key-gated AWS API Gateway host that returns 403 to anonymous requests.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://s3.amazonaws.com/dreamscape-web/ds_metadata.jpg
 url: https://raw.githubusercontent.com/api-evangelist/dreamscape-immersive/refs/heads/main/apis.yml
 x-type: company
