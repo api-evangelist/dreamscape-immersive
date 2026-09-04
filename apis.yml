@@ -19,6 +19,19 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - rate-limits
+  - security
+  generated: '2026-09-02'
+  method: derived
 image: https://s3.amazonaws.com/dreamscape-web/ds_metadata.jpg
 url: https://raw.githubusercontent.com/api-evangelist/dreamscape-immersive/refs/heads/main/apis.yml
 x-type: company
